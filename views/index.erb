@@ -1,0 +1,17 @@
+<div style='border: 3px dashed red'>   
+  <% if @visitor %>
+    Hello, <%= @visitor %>!
+  <% else %>  
+    <form action="/hello">
+      My name is <%= @name %>.
+      What's ypur name?  
+      <input type="text" name="name">
+      <input type="submit">
+    </form>  
+  <% end %>
+  <div style="border-image: 5 5 5 5 round round;">
+    <img src='/images/kitten.png'>    
+  </div>
+  <img src='/images/kitten.png' border='5'></img>
+
+</div>
