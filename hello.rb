@@ -6,7 +6,7 @@ get '/' do
 end 
 
 get '/secret' do
-  'This is a secret page'
+  erb :secret
 end
 
 get '/hello' do
