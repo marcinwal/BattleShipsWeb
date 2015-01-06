@@ -1,6 +1,8 @@
 require 'sinatra/base'
 
+
 class BattleShips < Sinatra::Base
+
   get '/' do
     erb :index
   end
@@ -11,6 +13,8 @@ class BattleShips < Sinatra::Base
 
   get '/maingame' do
     @player1 = params[:name]
+    @p1 = @player1 if @p1==""
+    @p2 = @player1 unless @p1==""
     erb :maingame
   end
 
