@@ -1,4 +1,10 @@
 <div>
   What is your name?
-  is it <%= @player1 %> ?
+  <% if !@player1.empty? %>
+    is it <%= @player1 %> ?
+  <% else %>
+   Please go back to the form.
+   <form action="/newgame">
+   <input type="submit">
+  <% end %> 
 </div>  
