@@ -1,6 +1,11 @@
-<div style='border: 3px dashed red'>   
+<style type="text/css">h2 {color: #953;
+    font: Helvetica, Arial, sans-serif;
+    background-image: url(/images/kitten.png);
+    background-repeat: no-repeat;}
+</style>
+<div>   
   <% if @visitor %>
-    Hello, <%= @visitor %>!
+    <h2>Hello, <%= @visitor %>! </h2>
   <% else %>  
     <form action="/hello">
       My name is <%= @name %>.
@@ -9,9 +14,7 @@
       <input type="submit">
     </form>  
   <% end %>
-  <div style="border-image: 5 5 5 5 round round;">
-    <img src='/images/kitten.png'>    
+    <img src='/images/kitten.png'></img>  
+    <img src='/images/kitten.png'></img>
   </div>
-  <img src='/images/kitten.png' border='5'></img>
-
 </div>

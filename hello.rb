@@ -1,10 +1,6 @@
 require 'sinatra'
 
 get '/' do
-  'hello!'
-end
-
-get '/' do
   @name = %w(Marcin Olo King).sample
   erb :index 
 end 
