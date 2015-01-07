@@ -17,7 +17,6 @@ class BattleShips < Sinatra::Base
   get '/maingame' do
     
     @player1 = params[:name]
-    # byebug
 
     if session[:p1] == nil
       session[:p1] = @player1
@@ -28,17 +27,6 @@ class BattleShips < Sinatra::Base
     else
         erb :toolate    
     end    
-
-    # session[:p1] = @player1 if session[:p1] == nil
-    # if session[:p2] == nil
-    #   session[:p2] = @player1 unless session[:p1] == nil
-    # end  
-
-    # if (session[:p1]!=nil && session[:p2]!=nil)
-    #    erb :toolate
-    #  else
-      
-     # end
   end
 
   # start the server if ruby file executed directly
