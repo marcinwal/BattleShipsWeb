@@ -1,10 +1,12 @@
 require 'sinatra/base'
+require 'byebug'
 
 class BattleShips < Sinatra::Base
 
   enable :sessions
 
   get '/' do
+    session.clear
     erb :index
   end
 
@@ -13,16 +15,30 @@ class BattleShips < Sinatra::Base
   end
 
   get '/maingame' do
+    
     @player1 = params[:name]
+    # byebug
 
-    session[:p1] = @player1 if session[:p1] == nil
-    session[:p2] = @player1 unless session[:p1] == nil
-
-    if !session[:p1] && !session[:p2]
-      erb :tolate
-    else
+    if session[:p1] == nil
+      session[:p1] = @player1
       erb :maingame
-    end
+    elsif session[:p2] == nil
+      session[:p2] = @player1
+      erb :maingame
+    else
+        erb :toolate    
+    end    
+
+    # session[:p1] = @player1 if session[:p1] == nil
+    # if session[:p2] == nil
+    #   session[:p2] = @player1 unless session[:p1] == nil
+    # end  
+
+    # if (session[:p1]!=nil && session[:p2]!=nil)
+    #    erb :toolate
+    #  else
+      
+     # end
   end
 
   # start the server if ruby file executed directly
