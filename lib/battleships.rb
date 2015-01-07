@@ -23,8 +23,8 @@ class BattleShips < Sinatra::Base
       direction = params[(ship.to_s+'loc').to_sym]
       dir = :vertically if direction == 'v'
       dir = :horizontally if direction == 'h'
-      byebug
-      @test = session[:p1]
+      #byebug
+      @test = session[:p]
       if @test == GAME.player1.name
         GAME.player1.board.place(Ship.send(ship),location,dir)
       else
@@ -46,7 +46,7 @@ class BattleShips < Sinatra::Base
     @allowed_ships = Ship.methods(false)
     @locations = Array.new(@allowed_ships.count)
     @directions = Array.new(@allowed_ships.count)
-    session[:p1] = @player1
+    session[:p] = @player1
 
     if GAME.player1 == nil
       GAME.player1 = Player.new
