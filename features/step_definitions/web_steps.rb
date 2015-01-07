@@ -21,3 +21,7 @@ end
 Then(/^i should see "(.*?)"$/) do |arg2|
   page.has_content? arg2
 end
+
+When(/^Two Players are registered$/) do
+  @p1 != nil && @p2 != nil
+end

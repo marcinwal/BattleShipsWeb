@@ -15,7 +15,7 @@ class BattleShips < Sinatra::Base
   end
 
   get '/maingame' do
-    
+
     @player1 = params[:name]
 
     if session[:p1] == nil
@@ -25,8 +25,10 @@ class BattleShips < Sinatra::Base
       session[:p2] = @player1
       erb :maingame
     else
-        erb :toolate    
-    end    
+        erb :toolate
+    end
+    @p1 = session[:p1]
+    @p2 = session[:p2]   
   end
 
   # start the server if ruby file executed directly
