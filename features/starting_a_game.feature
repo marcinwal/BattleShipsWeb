@@ -12,3 +12,9 @@ Feature: Starting the game
     Given I am on the newgame page
     When name is empty
     Then i should see "Please go back"
+
+  Scenario: Two Players are registered
+    Given I am on the newgame page
+    When Two Players are registered
+    When I am on the toolate page
+    Then I should see "We are sorry"
