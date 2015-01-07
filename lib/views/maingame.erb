@@ -6,7 +6,7 @@
    Please go back to the form.
    <form action="/newgame">
    <input type="submit">
-  <% end %> 
-  <%= @p1 %>
-  <%= @p2 %>
-</div>  
+  <% end %>
+  <%= session[:p1] %>
+  <%= session[:p2] %>
+</div>

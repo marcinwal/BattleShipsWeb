@@ -1,7 +1,8 @@
 require 'sinatra/base'
 
-
 class BattleShips < Sinatra::Base
+
+  enable :sessions
 
   get '/' do
     erb :index
@@ -13,9 +14,15 @@ class BattleShips < Sinatra::Base
 
   get '/maingame' do
     @player1 = params[:name]
-    @p1 = @player1 if @p1==""
-    @p2 = @player1 unless @p1==""
-    erb :maingame
+
+    session[:p1] = @player1 if session[:p1] == nil
+    session[:p2] = @player1 unless session[:p1] == nil
+
+    if !session[:p1] && !session[:p2]
+      erb :tolate
+    else
+      erb :maingame
+    end
   end
 
   # start the server if ruby file executed directly
