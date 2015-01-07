@@ -2,11 +2,12 @@
   What is your name?
   <% if !@player1.empty? %>
     is it <%= @player1 %> ?
+    <% @allowed_ships.each do |ship| %>
+    <%= ship.to_s %><&nbsp>
+    <% end %>
   <% else %>
    Please go back to the form.
    <form action="/newgame">
    <input type="submit">
   <% end %>
-  <%= session[:p1] %>
-  <%= session[:p2] %>
 </div>
