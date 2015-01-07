@@ -1,4 +1,4 @@
-require './lib/battleships.rb'
+#require './lib/battleships.rb'
 require './lib/board.rb'
 require './lib/cell.rb'
 require './lib/game.rb'

@@ -1,13 +1,18 @@
 <div>
   What is your name?
   <% if !@player1.empty? %>
-    is it <%= @player1 %> ?
-    <% @allowed_ships.each do |ship| %>
-    <%= ship.to_s %><&nbsp>
-    <% end %>
+     is it <%= @player1 %> 
+     <form action="/confo" method="get">
+     <% @allowed_ships.each do |ship| %>
+       <br>
+       <%= ship.to_s%>
+       <input type="text" name="<%=ship %>">
+       <input type="text" name="<%=ship.to_s+'loc'%>">
+     <% end %>
+     <input type="submit" value="place">
+     </form>
   <% else %>
    Please go back to the form.
-   <form action="/newgame">
    <input type="submit">
   <% end %>
 </div>

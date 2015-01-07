@@ -6,6 +6,8 @@ class BattleShips < Sinatra::Base
 
   enable :sessions
 
+  GAME = Game.new
+
   get '/' do
     session.clear
     erb :index
@@ -15,30 +17,48 @@ class BattleShips < Sinatra::Base
     erb :newgame
   end
 
+  get '/confo' do
+    Ship.methods(false).each do |ship|
+      location = params[ship].upcase!.to_sym
+      direction = params[(ship.to_s+'loc').to_sym]
+      dir = :vertically if direction == 'v'
+      dir = :horizontally if direction == 'h'
+      #byebug
+      GAME.player1.board.place(Ship.send(ship),location,dir)  
+      @test = session[:p1]
+    end  
+    erb :confo
+  end
+
+  get '/test' do
+    puts GAME
+    "hi"
+  end
+
   get '/maingame' do
     @player1 = params[:name]
 
     @allowed_ships = Ship.methods(false)
-    @locations = Array[@allowed_ships.count]
-    @directions = dfbdfdfdf
+    @locations = Array.new(@allowed_ships.count)
+    @directions = Array.new(@allowed_ships.count)
 
     if session[:p1] == nil
       session[:p1] = @player1
 
       p1 = Player.new
       p1.name=session[:p1]
-      b1 = Board.new(Cell)
-      p1.board=b1
+      GAME.player1 = p1
+      GAME.player1.board = Board.new(Cell)
 
       erb :maingame
 
     elsif session[:p2] == nil
       session[:p2] = @player1
 
-      p1 = Player.new
+      p2 = Player.new
       p2.name=session[:p2]
-      b2 = Board.new(Cell)
-      p2.board=b2
+      GAME.player2 = p2
+      GAME.player2.board = Board.new(Cell)
 
       erb :maingame
 

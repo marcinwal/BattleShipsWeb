@@ -38,7 +38,7 @@ private
 	end
 
 	def next_vertical(coord)
-		coord.to_s.reverse.next.reverse.to_sym
+		coord.to_s.reverse.next.reverse.to_sym   #smart 
 	end
 
 	def is_a_ship?(cell)
