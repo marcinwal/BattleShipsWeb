@@ -24,9 +24,14 @@ class BattleShips < Sinatra::Base
       dir = :vertically if direction == 'v'
       dir = :horizontally if direction == 'h'
       #byebug
-      GAME.player1.board.place(Ship.send(ship),location,dir)  
       @test = session[:p1]
-    end  
+      if session[:p1] == GAME.player1.name
+        GAME.player1.board.place(Ship.send(ship),location,dir)
+      else
+        GAME.player2.board.place(Ship.send(ship),location,dir)
+      end
+
+    end
     erb :confo
   end
 
