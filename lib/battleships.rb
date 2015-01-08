@@ -59,10 +59,10 @@ class BattleShips < Sinatra::Base
     @buttons = BUTTONS1 if GAME.player1.object_id == @id
     @buttons = BUTTONS2 if GAME.player2.object_id == @id
 
-    puts BUTTONS1.grid 
-    puts BUTTONS2.grid
-    byebug
-    puts params[:pushed]
+    target = params[:button]
+    
+    GAME.shoots(target.to_sym) unless target == nil
+    GAME.turn
 
     erb :game
   end

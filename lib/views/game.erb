@@ -5,7 +5,7 @@
 <% sym = (l+n.to_s).to_sym %>
 <% status="enabled" %>
 <% status="disabled" if @buttons.grid[sym]=="h" %>
-  <button id="pushed" type="button" name="pushed" <%=status%> value=<%=l+n.to_s%>><%= l+n.to_s%></button>
+  <button id="button" type="submit" name="button" <%=status%> value="<%=l+n.to_s%>"><%= l+n.to_s%></button>
 <% if n == 10 %>
   <br>
 <% end %>
@@ -16,7 +16,7 @@
 
 
  <script type="text/javascript">
-    document.getElementById("pushed").onclick = function () {
+    document.getElementById("button").onclick = function () {
         location.href = "/game";
     };
 </script>
