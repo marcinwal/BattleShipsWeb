@@ -39,6 +39,13 @@ class BattleShips < Sinatra::Base
     erb :confo
   end
 
+  get '/game' do
+    @player = session[:p]
+    @id = session[:id]
+    puts GAME
+    erb :game
+  end  
+
   get '/test' do
     puts GAME
     "hi"
