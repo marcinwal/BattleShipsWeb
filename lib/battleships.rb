@@ -8,6 +8,17 @@ class BattleShips < Sinatra::Base
 
   GAME = Game.new
 
+
+  def copy_state_buttons(player)
+
+    [*"A".."J"].each do |l|
+      [*1..10].each {|n| @buttons.grid["#{l}#{n}".to_sym]="h"
+       if GAME.player.receive_shot["#{l}#{n}".to_sym]
+      }
+    end
+
+  end
+
   get '/' do
     session.clear
     erb :index
@@ -20,7 +31,7 @@ class BattleShips < Sinatra::Base
   get '/confo' do
 
     @id = session[:id]
-    
+
 
     @status = GAME.ready? ? "enable" : "disabled"
 
@@ -43,7 +54,11 @@ class BattleShips < Sinatra::Base
   get '/game' do
     @player = session[:p]
     @id = session[:id]
-    puts GAME
+    copy_state_buttons(GAME.player1) if @id==GAME.player1.object_id
+    copy_state_buttons(GAME.player2) if @id==GAME.player2.object_id
+
+    @buttons = Board.new(String)
+
     erb :game
   end
 
