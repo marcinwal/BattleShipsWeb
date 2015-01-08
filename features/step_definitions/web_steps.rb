@@ -25,3 +25,8 @@ end
 When(/^Two Players are registered$/) do
   @p1 != nil && @p2 != nil
 end
+
+
+Given(/^I am on confo page$/) do
+  visit "/confo"
+end

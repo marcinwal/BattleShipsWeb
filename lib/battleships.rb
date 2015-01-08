@@ -26,9 +26,9 @@ class BattleShips < Sinatra::Base
       #byebug
       @test = session[:p]
       if @test == GAME.player1.name
-        GAME.player1.board.place(Ship.send(ship),location,dir)
+        GAME.player1.board.place(Ship.send(ship),location,dir) if GAME.player1.board.ships_count == 0
       else
-        GAME.player2.board.place(Ship.send(ship),location,dir)
+        GAME.player2.board.place(Ship.send(ship),location,dir) if GAME.player2.board.ships_count == 0
       end
 
     end
