@@ -7,6 +7,15 @@ class BattleShips < Sinatra::Base
   enable :sessions
 
   GAME = Game.new
+  BUTTONS1 = Board.new(String)
+  BUTTONS2 = Board.new(String)
+
+  def copy_state_buttons(buttons,player)
+    player.board.grid.each do |k,v|
+        buttons.grid[k] = "h" if player.board.grid[k].hit?
+        buttons.grid[k] = "n" if !player.board.grid[k].hit?
+    end
+  end  
 
   get '/' do
     session.clear
@@ -43,7 +52,16 @@ class BattleShips < Sinatra::Base
   get '/game' do
     @player = session[:p]
     @id = session[:id]
-    puts GAME
+
+    copy_state_buttons(BUTTONS1,GAME.player1) if GAME.player1.object_id == @id 
+    copy_state_buttons(BUTTONS2,GAME.player2) if GAME.player2.object_id == @id 
+
+    puts GAME.player1.board.grid
+    puts GAME.player2.board.grid
+
+    puts BUTTONS1.grid
+    puts BUTTONS2.grid
+
     erb :game
   end
 
@@ -59,6 +77,11 @@ class BattleShips < Sinatra::Base
       player = Player.new
       player.name = @player1
       player.board = Board.new(Cell)
+
+      player.board.grid.each do |k,v|
+        v.content = Water.new
+      end
+
       GAME.add_player(player)
       session[:id] = player.object_id
       erb :maingame
