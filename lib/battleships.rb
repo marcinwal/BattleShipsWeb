@@ -56,8 +56,13 @@ class BattleShips < Sinatra::Base
     copy_state_buttons(BUTTONS1,GAME.player1) if GAME.player1.object_id == @id
     copy_state_buttons(BUTTONS2,GAME.player2) if GAME.player2.object_id == @id
 
-    puts BUTTONS1.grid
+    @buttons = BUTTONS1 if GAME.player1.object_id == @id
+    @buttons = BUTTONS2 if GAME.player2.object_id == @id
+
+    puts BUTTONS1.grid 
     puts BUTTONS2.grid
+    byebug
+    puts params[:pushed]
 
     erb :game
   end
