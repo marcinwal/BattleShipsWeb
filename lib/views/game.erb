@@ -1,1 +1,10 @@
 <h1>Welcome to the GAME <%=@player %></h1> <br />
+
+<% 	[*"A".."J"].each do |l| %>
+<% [*1..10].each do |n| %>
+  <button type="button"><%= l+n.to_s%></button>
+<% if n == 10 %>
+  <br>
+<% end %>
+  <% end %>
+  <% end %>
