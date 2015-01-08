@@ -58,7 +58,7 @@ class BattleShips < Sinatra::Base
 
     puts BUTTONS1.grid
     puts BUTTONS2.grid
-    puts hello
+    puts hello Richard
 
     erb :game
   end
