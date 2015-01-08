@@ -20,6 +20,7 @@ class BattleShips < Sinatra::Base
   get '/confo' do
 
     @id = session[:id]
+    
 
     @status = GAME.ready? ? "enable" : "disabled"
 
