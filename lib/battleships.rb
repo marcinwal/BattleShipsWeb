@@ -56,9 +56,6 @@ class BattleShips < Sinatra::Base
     copy_state_buttons(BUTTONS1,GAME.player1) if GAME.player1.object_id == @id 
     copy_state_buttons(BUTTONS2,GAME.player2) if GAME.player2.object_id == @id 
 
-    puts GAME.player1.board.grid
-    puts GAME.player2.board.grid
-
     puts BUTTONS1.grid
     puts BUTTONS2.grid
 
