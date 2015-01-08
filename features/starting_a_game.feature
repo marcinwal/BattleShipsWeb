@@ -18,3 +18,8 @@ Feature: Starting the game
     When Two Players are registered
     When I am on the toolate page
     Then I should see "We are sorry"
+
+  Scenario: Two Players are ready to play
+    Given I am on the game page
+    When Two Players are registered
+    Then I should see "Welcome to the game"
