@@ -18,19 +18,20 @@ class BattleShips < Sinatra::Base
   end
 
   get '/confo' do
+
+    @id = session[:id]
+
     Ship.methods(false).each do |ship|
       location = params[ship].upcase!.to_sym
       direction = params[(ship.to_s+'loc').to_sym]
       dir = :vertically if direction == 'v'
       dir = :horizontally if direction == 'h'
       #byebug
-      @test = session[:p]
-      if @test == GAME.player1.name
-        GAME.player1.board.place(Ship.send(ship),location,dir) if GAME.player1.board.ships_count == 0
+      if @id == GAME.player1.object_id
+        GAME.player1.board.place(Ship.send(ship),location,dir) unless GAME.player1.board.ships_count == Ship.methods(false).count
       else
-        GAME.player2.board.place(Ship.send(ship),location,dir) if GAME.player2.board.ships_count == 0
+        GAME.player2.board.place(Ship.send(ship),location,dir) unless GAME.player2.board.ships_count == Ship.methods(false).count
       end
-
     end
     erb :confo
   end
@@ -48,6 +49,7 @@ class BattleShips < Sinatra::Base
     @directions = Array.new(@allowed_ships.count)
     session[:p] = @player1
 
+
     # if GAME.player1 == nil
     #   GAME.player1 = Player.new
     #   GAME.player1.name = @player1
@@ -58,7 +60,10 @@ class BattleShips < Sinatra::Base
       player.name = @player1
       player.board = Board.new(Cell)
       GAME.add_player(player)
-
+      session[:id] = player.object_id
+      puts player.object_id
+      puts GAME.player1
+      puts GAME.player2
       erb :maingame
 
     # elsif
