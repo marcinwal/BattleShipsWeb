@@ -48,17 +48,24 @@ class BattleShips < Sinatra::Base
     @directions = Array.new(@allowed_ships.count)
     session[:p] = @player1
 
-    if GAME.player1 == nil
-      GAME.player1 = Player.new
-      GAME.player1.name = @player1
-      GAME.player1.board = Board.new(Cell)
+    # if GAME.player1 == nil
+    #   GAME.player1 = Player.new
+    #   GAME.player1.name = @player1
+    #   GAME.player1.board = Board.new(Cell)
+
+    if !GAME.ready?
+      player = Player.new
+      player.name = @player1
+      player.board = Board.new(Cell)
+      GAME.add_player(player)
+
       erb :maingame
 
-    elsif
-      GAME.player2 = Player.new
-      GAME.player2.name = @player1
-      GAME.player2.board = Board.new(Cell)
-      erb :maingame
+    # elsif
+    #   GAME.player2 = Player.new
+    #   GAME.player2.name = @player1
+    #   GAME.player2.board = Board.new(Cell)
+    #   erb :maingame
 
 
     # if session[:p1] == nil
@@ -79,7 +86,7 @@ class BattleShips < Sinatra::Base
     #   GAME.player2 = p2
     #   GAME.player2.board = Board.new(Cell)
 
-      
+
 
     else
         erb :toolate
