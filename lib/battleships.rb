@@ -21,6 +21,8 @@ class BattleShips < Sinatra::Base
 
     @id = session[:id]
 
+    @status = GAME.ready? ? "enable" : "disabled"
+
     Ship.methods(false).each do |ship|
       location = params[ship].upcase!.to_sym
       direction = params[(ship.to_s+'loc').to_sym]
@@ -31,6 +33,7 @@ class BattleShips < Sinatra::Base
         GAME.player1.board.place(Ship.send(ship),location,dir) unless GAME.player1.board.ships_count == Ship.methods(false).count
       else
         GAME.player2.board.place(Ship.send(ship),location,dir) unless GAME.player2.board.ships_count == Ship.methods(false).count
+        @status = "enable"
       end
     end
     erb :confo
