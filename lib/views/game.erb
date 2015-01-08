@@ -1,3 +1,18 @@
+#submit {
+    background-color: #ccc;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
+
+
+
 <h1>Welcome to the GAME <%=@player %></h1> <br />
 <form method="get" action="/game">
 <% 	[*"A".."J"].each do |l| %>
@@ -20,3 +35,5 @@
         location.href = "/game";
     };
 </script>
+
+
