@@ -4,6 +4,8 @@ require './lib/setup.rb'
 
 class BattleShips < Sinatra::Base
 
+  set :public, 'public'  #!!!!!!!!!!!!!!!!!!!!!!!!!!!! important at the beginning
+
   enable :sessions
 
   GAME = Game.new
@@ -60,9 +62,11 @@ class BattleShips < Sinatra::Base
     @buttons = BUTTONS2 if GAME.player2.object_id == @id
 
     target = params[:button]
-    
-    GAME.shoots(target.to_sym) unless target == nil
-    GAME.turn
+
+    if target != nil
+      GAME.shoots(target.to_sym) 
+      GAME.turn
+    end
 
     erb :game
   end
